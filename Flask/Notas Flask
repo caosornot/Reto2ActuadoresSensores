@@ -1,0 +1,66 @@
+FLASK BASICO
+http://flask.pocoo.org/docs/0.12/quickstart/
+
+Enrutamiento
+
+    route() sirve para crear diferentes paginas, segun se requiera
+
+        @app.route('/')             #route para pagina inicial
+        def index():
+            return 'Index Page'
+
+        @app.route('/hello')        #route pagina hello
+        def hello():
+            return 'Hello, World'
+
+Metodos HTTP
+
+    Por defecto route() solo tiene habilitado get, pero con methods es posible especificar otros a usar
+
+        from flask import request
+
+        @app.route('/login', methods=['GET', 'POST'])
+        def login():
+            if request.method == 'POST':
+                do_the_login()
+            else:
+                show_the_login_form()
+
+    GET : El buscador le dice al servidor que quiere obtener informacion almacenada
+    HEAD : El buscador le dice al servidor que quiere obtener solo el header de la pagina, no el contenido
+    POST : El buscador le dice al servidor que quiere postear nueva informacion solo una vez
+    PUT : El buscador le dice al servidor que quiere postear nueva informacion varias veces, sobreescribiendo valores
+    DELETE : Eliminar la informacion de una localizacion dada
+
+Rendering Templates
+
+    Flask cuenta con Jinja 2 quien automaticamente convierte una pagina HTML a python flask
+
+    Se usa render_template(). Solo es necesario ingresar el nombre de la plantila HTML y los argumentos
+        from flask import render_template
+
+        @app.route('/hello/')
+        @app.route('/hello/<name>')
+        def hello(name=None):
+            return render_template('hello.html', name=name)
+
+    Es importante la creacion del directorio o carpetas
+
+        /application.py
+        /templates
+            /template.html
+
+TUTORIAL DE FLASK BOOTSTRAP
+https://www.thecodewolf.com/python-flask-web-development-flask-templates-and-flask-bootstrap-integration/
+
+Codigo base de tutorial para renderizar pagina html simple.
+    from flask import Flask, render_template
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    if __name__ == '__main__':
+    app.run(debug=True)
