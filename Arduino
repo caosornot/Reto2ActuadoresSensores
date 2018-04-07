@@ -1,0 +1,17 @@
+Abril 7
+
+Se usará el Arduino MKR1000 para realizar el envio de datos al servidor
+Se descarga del gestor de tarjetas el MKR1000
+Se descarga la libreria WiFi101
+Se descarga la libreria ArduinoHttpClient
+
+Se modifica ejemplo ArduinoHttpCliente/SimplePost
+
+Se cambian datos de conexión
+	char ssid[] = "ONE E1003";
+	char pass[] = "caosornot";
+
+Se cambian el tipo de datos por enviar eal servidor:
+  String contentType = "application/json";
+  String postData = { \"temp\" : act_temp};
+
