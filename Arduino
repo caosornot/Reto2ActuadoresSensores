@@ -11,7 +11,20 @@ Se cambian datos de conexión
 	char ssid[] = "ONE E1003";
 	char pass[] = "caosornot";
 
-Se cambian el tipo de datos por enviar eal servidor:
+Se adiciona Lectura de LM35:
+
+	temp = analogRead(0) ;            // selecciona la entrada analoga 0
+	temp = (3.3*temp*100.0)/1024.0; // fórmula que convierte el valor análogo a grados Celsius
+	delay(1000);                      // llama un retardo de 200 milisegundo
+	Serial.print("Temperatura: ");  // muestra mensaje CONVERSOR A/D
+	Serial.println(temp);           // muestra el valor numérico de la conversión
+
+
+Se cambian el tipo de datos por enviar al servidor:
+
   String contentType = "application/json";
-  String postData = { \"temp\" : act_temp};
+  String postData = "{ \"temp\" : ";
+  postData += temp;
+  postData += " }";
+
 
