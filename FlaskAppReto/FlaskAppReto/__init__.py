@@ -1,22 +1,19 @@
+from flask import Flask
+from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return render_template('template.html')
+app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-@app.route("/historico")
-def historico():
-    return render_template('historico.html')
-
-@app.route("/analisis")
-def analisis():
-    return render_template('analisis.html')
-
-@app.route("/implementacion")
-def implementacion():
-    return render_template('implementacion.html')
+from FlaskAppReto import routes, models
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
+
+
