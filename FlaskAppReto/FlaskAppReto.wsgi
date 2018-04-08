@@ -2,7 +2,7 @@
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/home/caosornot/GitReto/Reto2ActuadoresSensores/Flask")
+sys.path.insert(0,"/var/www/FlaskAppReto/")
 
-from Flask import app as application
+from FlaskAppReto import app as application
 application.secret_key = 'Add your secret key'

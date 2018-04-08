@@ -64,3 +64,40 @@ Codigo base de tutorial para renderizar pagina html simple.
 
     if __name__ == '__main__':
     app.run(debug=True)
+
+TUTORIAL How To Deploy a Flask Application on an Ubuntu VPS 
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+
+Se sigue los pasos del tutorial recomendado por el profesor para desplegar la aplicacion de flask de DigitalOcean
+
+Archivo .conf realizado
+	/etc/apache2/sites-available/FlaskApp.conf
+
+	<VirtualHost *:80>
+		        ServerName 165.227.197.35
+		        ServerAdmin caosornot@eafit.edu.co
+		        WSGIScriptAlias / /var/www/FlaskAppReto/FlaskAppReto.wsgi
+		        <Directory /var/www/FlaskAppReto/FlaskAppReto/>
+		                Order allow,deny
+		                Allow from all
+		        </Directory>
+		        Alias /static /var/www/FlaskAppReto/FlaskAppReto/static
+		        <Directory /var/www/FlaskAppReto/FlaskAppReto/static/>
+		                Order allow,deny
+		                Allow from all
+		        </Directory>
+		        ErrorLog ${APACHE_LOG_DIR}/error.log
+		        LogLevel warn
+		        CustomLog ${APACHE_LOG_DIR}/access.log combined
+	</VirtualHost>
+
+Archivo .wsgi realizado
+
+	#!/usr/bin/python
+	import sys
+	import logging
+	logging.basicConfig(stream=sys.stderr)
+	sys.path.insert(0,"/var/www/FlaskAppReto/")
+
+	from FlaskAppReto import app as application
+	application.secret_key = 'Add your secret key'
