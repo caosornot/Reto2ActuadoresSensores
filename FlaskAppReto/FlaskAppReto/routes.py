@@ -8,7 +8,8 @@ def index():
 
 @app.route("/temperatura")
 def historico():
-    return render_template('temperatura.html')
+    cursor = db.execute('SELECT id, temp, timestamp FROM RegTemp')
+    return render_template('temperatura.html',items=cursor.fetchall())
 
 @app.route("/implementacion")
 def implementacion():
@@ -16,15 +17,11 @@ def implementacion():
 
 @app.route("/temperatura/add_entry", methods=['POST'])
 def add_entry():
-    print("p1")
     content = request.get_json()
     tempC = content.get('temp')
-    print (tempC)
     u = RegTemp(temp = tempC)
-    print ("p3")
     db.session.add(u)
-    print ("p4")
     db.session.commit()
-    print("p5")
     reponse_content='OK'
+
     return jsonify(content)

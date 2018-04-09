@@ -34,15 +34,9 @@
               </div>
                 <ul class="nav">
                     <li>
-                        <a class="nav-link" href="historico">
+                        <a class="nav-link" href="temperatura">
                             <i class="nc-icon nc-watch-time"></i>
                             <p>Datos Historicos</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="analisis">
-                            <i class="nc-icon nc-vector"></i>
-                            <p>Analisis </p>
                         </a>
                     </li>
                     <li>
@@ -89,6 +83,25 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
+                      <div class="table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                          <thead>
+                            <th>ID</th>
+                            <th>Temperatura</th>
+                            <th>Tiempo</th>
+                          </thead>
+                          <tbody>
+                            {% for item in items %}
+                              <tr>
+                                  <td>id</td>
+                                  <td>temp</td>
+                                  <td>timestamp</td>
+                              </td>
+                          {% endfor %}
+                          </tbody>
+                        </table>
+
+                      </div>
                     </div>
                 </div>
             </div>
