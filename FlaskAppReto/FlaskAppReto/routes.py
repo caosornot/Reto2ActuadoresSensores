@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, jsonify, request
 from FlaskAppReto import app, db
 from FlaskAppReto.models import RegTemp
 
@@ -16,12 +16,15 @@ def implementacion():
 
 @app.route("/temperatura/add_entry", methods=['POST'])
 def add_entry():
-    print("p0")
-    request_json = request.get_json()
-    tempC = request_json.get('temp')
-    u = RegTemp(tempC)
+    print("p1")
+    content = request.get_json()
+    tempC = content.get('temp')
+    print (tempC)
+    u = RegTemp(temp = tempC)
+    print ("p3")
     db.session.add(u)
+    print ("p4")
     db.session.commit()
-    response_content = conn.commit()
-
-    return jsonify(response_content)
+    print("p5")
+    reponse_content='OK'
+    return jsonify(content)
