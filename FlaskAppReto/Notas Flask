@@ -101,3 +101,38 @@ Archivo .wsgi realizado
 
 	from FlaskAppReto import app as application
 	application.secret_key = 'Add your secret key'
+
+LECTURA DE JSON EN FLASK
+
+Consulte como realizar la lectura de los archivos enviados por Arduino en flask
+El procedimiento lo obtuve de los siguientes links:
+	https://stackoverflow.com/questions/20001229/how-to-get-posted-json-in-flask
+	https://stackoverflow.com/questions/43218413/get-data-json-in-flask
+	
+De la información mostrada super que se requeria importar request jsonify para esto.
+
+Como la base de datos ya se encontraba creada (siguiendo este tutorial https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database), modifique el codigo para obtener el valor del json y de una vez ingresarlo a la base de datos.
+
+	@app.route("/temperatura/add_entry", methods=['POST'])   #Creacion de ruta con Method POST para recibir información
+	def add_entry():
+	    print("p1")
+	    content = request.get_json()			#Lectura de archivo JSON
+	    tempC = content.get('temp')				#Obtener valor de temperatura
+	    print (tempC)
+    	    u = RegTemp(temp = tempC)				#Se ingresa el valor a la base de datos	
+	    print ("p3")
+	    db.session.add(u)					#Adiciona contenido de BD
+	    print ("p4")
+            db.session.commit()					#Se envia contenido de BD
+	    print("p5")
+	    return jsonify(content)				#Se envia respuesta al emisor del JSON	
+
+Para verificar el funcionamiento de este use la aplicacion de Google Chrome POSTMAN, siguiendo las instrucciones de https://www.getpostman.com/docs/v6/postman/sending_api_requests/requests, arme el mensaje JSON para enviarlo al servidor y la URL definida	165.227.197.35:5000/temperatura/add_entry
+
+A partir de aca comence a solucionar errores que aparecian, como permisos de escritura en la base de datos,  https://stackoverflow.com/questions/21054245/attempt-to-write-a-readonly-database-django-w-selinux-error, con el comando chown "username" "file or directory", concedi los permisor para escritura de la base de datos.
+
+Luego el problema fue un error al crear la base de datos, el valor de temp, le habia puest la caracteristica Unique=True, por lo que al enviar el mismo valor de temperatura dos veces, generaba error. Para esto debi cambiar el archivo FlaskAppReto/models.py eliminando esa caracteristica y posteriosmente debi cargar de nuevo la base de datos y actualizarla con  flask db migrate -m "comentario" y luego flask db upgrade.
+
+Finalmente con esta modificaciones logre enviar el dato al servidor y guardarlo en la BD.
+
+
