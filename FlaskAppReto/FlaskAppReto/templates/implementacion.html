@@ -1,3 +1,7 @@
+<!--    ACTUADORES Y SENSORES - RETO 2
+        Carlos Andres Osorno Tejada
+        Esta pagina fue descarga de Creative Tim y modificada para esta aplicacion -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +10,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../static/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../static/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>EAFIT - DIST - Actuadores y Sensores - Reto 2 by Carlos Osorno</title>
+    <title>EAFIT - DIST - Actuadores y Sensores - Reto 2 by Carlos Osorno</title>   <!-- Se modifico titulo -->
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -26,6 +30,7 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
+    <!-- Se realiza modificación de la barra lateral con las dos paginas de mi App -->
             <div class="sidebar-wrapper">
               <div href="/" class="logo">
                   <a class="simple-text">
@@ -34,15 +39,9 @@
               </div>
                 <ul class="nav">
                     <li>
-                        <a class="nav-link" href="historico">
+                        <a class="nav-link" href="temperatura">
                             <i class="nc-icon nc-watch-time"></i>
-                            <p>Datos Historicos</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="analisis">
-                            <i class="nc-icon nc-vector"></i>
-                            <p>Analisis </p>
+                            <p>Temperatura</p>
                         </a>
                     </li>
                     <li>
@@ -89,6 +88,51 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
+                      <h1>IMPLEMENTACI&Oacute;N</h1>
+
+                        <p>Para realizar esta aplicaci&oacute;n Web fueron varias los tutoriales y paginas consultadas. A continuaci&oacute;n se muestran las mas relevantes.</p>
+
+                        <h2>Digital Ocean:</h2>
+
+                        <p>El servidor de esta pagina como tal esta alojado en Digital Ocean. Para esto se siguieron las instrucciones para la creaci&oacute;n de un Droplet y adicionalmente se siguieron las tutorial de instalaci&oacute;n de LAMP, configuraci&oacute;n de llaves SSH y el tutorial para desplegar la apliaci&oacute;n de Flask en el Droplet.</p>
+
+                        <blockquote><a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps">https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps</a></blockquote>
+
+                        <blockquote><a href="https://www.digitalocean.com/community/tutorials/como-instalar-linux-apache-mysql-php-lamp-en-ubuntu-16-04-es">https://www.digitalocean.com/community/tutorials/como-instalar-linux-apache-mysql-php-lamp-en-ubuntu-16-04-es</a></blockquote>
+
+                        <blockquote><a href="https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets">https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets</a></blockquote>
+
+                        <h2>Flask:</h2>
+
+                        <p>Dado que la pagina web esta desarrollada en este framework, fue de la que mas hubo que consultar y de la que se realizaron tutoriales, para el uso de Render_Template y el uso de METHOD = &#39;GET&#39; &#39;POST&#39;</p>
+
+                        <blockquote>
+                        <p><a href="http://flask.pocoo.org/docs/0.12/quickstart/">http://flask.pocoo.org/docs/0.12/quickstart/</a></p>
+                        </blockquote>
+                        <blockquote>
+                        <p><a href="http://flask.pocoo.org/docs/0.12/tutorial/">http://flask.pocoo.org/docs/0.12/tutorial/</a></p>
+                        </blockquote>
+                        <blockquote>
+                        <p><a href="https://www.thecodewolf.com/courses/python-flask-web-development/">https://www.thecodewolf.com/courses/python-flask-web-development/</a></p>
+                        </blockquote>
+                        <blockquote>
+                        <p><a href="https://blog.miguelgrinberg.com/index">https://blog.miguelgrinberg.com/index</a></p>
+                        </blockquote>
+
+                        <h2>Base de Datos:</h2>
+
+                        <p>Para la base de datos se siguio las instrucciones del tutorial https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database. En este se usa SQLAlchemy para la base datos.</p>
+
+                        <blockquote>
+                        <p><a href="http://docs.sqlalchemy.org/en/latest/">http://docs.sqlalchemy.org/en/latest/</a></p>
+                        </blockquote>
+
+                        <h2>Arduino:</h2>
+
+                        <p>Como sistema embebido para el envio de datos al servidor Web, se decidio usar la plataforma de Arduino. Se hizo uso del MKR1000 teniendo encuenta que podia conectarse por Wifi a la red. Teniendo en cuenta eso, se uso la libreria arduinoHttpClient, la cual posibilita realizar POST al servidor que se indique.</p>
+
+                        <p>&nbsp;</p>
+
                     </div>
                 </div>
             </div>
@@ -112,7 +156,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a href="http://www.creative-tim.com">Creative Tim</a>
                         </p>
                     </nav>
                 </div>

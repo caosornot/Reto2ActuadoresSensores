@@ -1,3 +1,7 @@
+<!--    ACTUADORES Y SENSORES - RETO 2
+        Carlos Andres Osorno Tejada
+        Esta pagina fue descarga de Creative Tim y modificada para esta aplicacion -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +40,7 @@
                     <li>
                         <a class="nav-link" href="temperatura">
                             <i class="nc-icon nc-watch-time"></i>
-                            <p>Datos Historicos</p>
+                            <p>Temperatura</p>
                         </a>
                     </li>
                     <li>
@@ -83,6 +87,8 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
+                        <!-- CREACION DE TABLA PARA DESPLEGAR LOS VALORES DE
+                              TEMPERATURA, DINAMICA SEGUN LOS VALORES DE LA BD-->
                       <div class="table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                           <thead>
@@ -91,11 +97,11 @@
                             <th>Tiempo</th>
                           </thead>
                           <tbody>
-                            {% for item in items %}
+                            {% for item in items %}       <!-- CICLO QUE CREA LA TABLA SEGUN LA VARIABLE ITEMS -->
                               <tr>
-                                  <td>item.id</td>
-                                  <td>item.temp</td>
-                                  <td>item.timestamp</td>
+                                  <td>{{item.id}}</td>    <!-- COLUMNA 1 EL ID -->
+                                  <td>{{item.temp}}</td>  <!-- COLUMNA 2 VALOR DE TEMPERATURA -->
+                                  <td>{{item.timestamp}}</td> <!-- COLUMNA 3 ESTAMPA DE TIEMPO -->
                               </td>
                           {% endfor %}
                           </tbody>
@@ -125,7 +131,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a href="http://www.creative-tim.com">Creative Tim</a>
                         </p>
                     </nav>
                 </div>
