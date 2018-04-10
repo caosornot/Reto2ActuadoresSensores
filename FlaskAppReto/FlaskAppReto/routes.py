@@ -8,8 +8,8 @@ def index():
 
 @app.route("/temperatura")
 def historico():
-    cursor = db.execute('SELECT id, temp, timestamp FROM RegTemp')
-    return render_template('temperatura.html',items=cursor.fetchall())
+
+    return render_template('temperatura.html',items=RegTemp.query.all())
 
 @app.route("/implementacion")
 def implementacion():
